@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.fakeapiproject.presentattion.MainDestinations
+import com.example.fakeapiproject.presentattion.Destinations
 import com.example.fakeapiproject.presentattion.photo_list.components.PhotoListItem
 
 @Composable
@@ -30,7 +30,7 @@ fun PhotoListScreen(
             items(state.photos) { photo ->
                 PhotoListItem(photo = photo,
                     onItemClick = {
-                        navController.navigate(MainDestinations.PhotoDetailScreen.screen_route + "/${photo.id}")
+                        navController.navigate(Destinations.PhotoDetailScreen.screen_route + "/${photo.id}")
                     })
             }
         }

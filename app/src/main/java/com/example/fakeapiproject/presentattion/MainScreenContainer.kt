@@ -1,29 +1,45 @@
 package com.example.fakeapiproject.presentattion
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.fakeapiproject.R
+import com.example.fakeapiproject.presentattion.photo_detail.PhotoDetailScreen
 
 @Composable
 fun MainScreenView(){
     val navController = rememberNavController()
-    Scaffold(
-        bottomBar = { CustomBottomNavigation(navController = navController) }
-    ) {
+    val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
 
-        NavigationGraph(navController = navController)
+    when (navBackStackEntry?.destination?.route) {
+        Destinations.PhotoDetailScreen.screen_route -> {
+            bottomBarState.value = false
+        }
+    }
+
+    Scaffold(
+        bottomBar = {CustomBottomNavigation(navController = navController,bottomBarState) }
+    ) {
+       NavigationGraph(navController = navController,bottomBarState=bottomBarState)
     }
 }
+
+
 @Composable
-fun CustomBottomNavigation(navController: NavController) {
+fun CustomBottomNavigation(navController: NavController,bottomBarState: MutableState<Boolean>) {
     val items = listOf(
         BottomNavItem.Home,
         BottomNavItem.MyNetwork,
@@ -31,34 +47,41 @@ fun CustomBottomNavigation(navController: NavController) {
         BottomNavItem.Notification,
         BottomNavItem.Jobs
     )
-    BottomNavigation(
-        backgroundColor = colorResource(id = R.color.white),
-        contentColor = Color.Black
-    ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-        items.forEach { item ->
-            BottomNavigationItem(
-                icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
-                label = { Text(text = item.title,
-                    fontSize = 9.sp) },
-                selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black.copy(0.4f),
-                alwaysShowLabel = true,
-                selected = currentRoute == item.screen_route,
-                onClick = {
-                    navController.navigate(item.screen_route) {
+    AnimatedVisibility(
+        visible = bottomBarState.value,
+        enter = slideInVertically(initialOffsetY = { it }),
+        exit = slideOutVertically(targetOffsetY = { it }),
+        content = {
+            BottomNavigation(
+                backgroundColor = colorResource(id = R.color.white),
+                contentColor = Color.Black
+            ) {
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
+                items.forEach { item ->
+                    BottomNavigationItem(
+                        icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
+                        label = { Text(text = item.title,
+                            fontSize = 9.sp) },
+                        selectedContentColor = Color.Black,
+                        unselectedContentColor = Color.Black.copy(0.4f),
+                        alwaysShowLabel = true,
+                        selected = currentRoute == item.screen_route,
+                        onClick = {
+                            navController.navigate(item.screen_route) {
 
-                        navController.graph.startDestinationRoute?.let { screen_route ->
-                            popUpTo(screen_route) {
-                                saveState = true
+                                navController.graph.startDestinationRoute?.let { screen_route ->
+                                    popUpTo(screen_route) {
+                                        saveState = true
+                                    }
+                                }
+                                launchSingleTop = true
+                                restoreState = true
                             }
                         }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
+                    )
                 }
-            )
-        }
-    }
+            }
+        })
+
 }

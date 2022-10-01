@@ -11,8 +11,8 @@ sealed class BottomNavItem(var title:String, var icon:Int, var screen_route:Stri
     object Jobs: BottomNavItem("Jobs",R.drawable.ic_job,"jobs")
 }
 
-sealed class MainDestinations(val screen_route:String){
-    object PhotoListScreen: MainDestinations("photo_list_screen")
-    object PhotoDetailScreen: MainDestinations("photo_detail_screen")
-
+sealed class Destinations(val screen_route:String){
+    object PhotoListScreen: Destinations("photo_list_screen")
+    object PhotoDetailScreen: Destinations("photo_detail_screen")
+    object Splash : Destinations("splash_screen")
 }
