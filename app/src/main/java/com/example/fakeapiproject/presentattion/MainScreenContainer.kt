@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,9 +18,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.fakeapiproject.R
 import com.example.fakeapiproject.presentattion.photo_detail.PhotoDetailScreen
+import com.example.fakeapiproject.presentattion.splash_screen.SplashScreen
+import com.example.fakeapiproject.presentattion.splash_screen.SplashViewModel
 
 @Composable
-fun MainScreenView(){
+fun MainScreenView(viewModel: SplashViewModel = hiltViewModel()){
     val navController = rememberNavController()
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -30,11 +33,16 @@ fun MainScreenView(){
         }
     }
 
-    Scaffold(
-        bottomBar = {CustomBottomNavigation(navController = navController,bottomBarState) }
-    ) {
-       NavigationGraph(navController = navController,bottomBarState=bottomBarState)
+    if(viewModel.state.value.isLoading){
+        SplashScreen()
+    }else{
+        Scaffold(
+            bottomBar = {CustomBottomNavigation(navController = navController,bottomBarState) }
+        ) {
+            NavigationGraph(navController = navController,bottomBarState=bottomBarState)
+        }
     }
+
 }
 
 
