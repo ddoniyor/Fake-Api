@@ -42,7 +42,7 @@ fun NavigationGraph(navController: NavHostController,bottomBarState:MutableState
             }
             JobScreen()
         }
-        composable(route = Destinations.PhotoDetailScreen.screen_route + "/{photoId}") {
+        composable(route = Destinations.PhotoDetailScreen.screen_route + "/{${Constants.PARAM_PHOTO_ID}}") {
             LaunchedEffect(Unit) {
                 bottomBarState.value = false
             }

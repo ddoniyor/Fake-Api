@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.fakeapiproject.common.Resource
 import com.example.fakeapiproject.domain.use_case.get_photos.GetPhotosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -23,7 +25,7 @@ class PhotoListViewModel @Inject constructor(
         getPhotos()
     }
 
-    private fun getPhotos(){
+    fun getPhotos(isRefreshing :Boolean = false){
         getPhotosUseCase().onEach { result->
             when(result){
                 is Resource.Success->{
@@ -33,7 +35,11 @@ class PhotoListViewModel @Inject constructor(
                     _state.value = PhotoListState(error = result.message ?: "Unexpected error occurred")
                 }
                 is Resource.Loading->{
-                    _state.value = PhotoListState(isLoading = true)
+                    if (isRefreshing) {
+                        _state.value = PhotoListState(isRefreshing = true)
+                    } else {
+                        _state.value = PhotoListState(isLoading = true)
+                    }
                 }
             }
 
