@@ -4,11 +4,14 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -37,12 +40,34 @@ fun MainScreenView(viewModel: SplashViewModel = hiltViewModel()){
         SplashScreen()
     }else{
         Scaffold(
+            topBar = { TopAppBar(navController = navController)},
             bottomBar = {CustomBottomNavigation(navController = navController,bottomBarState) }
         ) {
             NavigationGraph(navController = navController,bottomBarState=bottomBarState)
         }
     }
 
+}
+
+@Composable
+fun TopAppBar(navController: NavController) {
+    TopAppBar(
+        title = {
+            Text(text = "Fake Api")
+        },
+        navigationIcon = if (navController.previousBackStackEntry != null) {
+            {
+                IconButton(onClick = {navController.navigateUp()}) {
+                    Icon(Icons.Filled.ArrowBack, "backIcon")
+                }
+            }
+        } else {
+            null
+        },
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = Color.White,
+        elevation = 10.dp
+    )
 }
 
 
