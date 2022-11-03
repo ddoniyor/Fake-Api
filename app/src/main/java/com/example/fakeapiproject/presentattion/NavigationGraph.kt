@@ -7,7 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.fakeapiproject.common.Constants
-import com.example.fakeapiproject.presentattion.photo_detail.PhotoDetailScreen
+import com.example.fakeapiproject.presentattion.home.photo_detail.PhotoDetailScreen
 
 @Composable
 fun NavigationGraph(navController: NavHostController,bottomBarState:MutableState<Boolean>) {
@@ -22,13 +22,13 @@ fun NavigationGraph(navController: NavHostController,bottomBarState:MutableState
             LaunchedEffect(Unit) {
                 bottomBarState.value = true
             }
-            NetworkScreen()
+            NetworkScreen(navController)
         }
         composable(BottomNavItem.AddPost.screen_route) {
             LaunchedEffect(Unit) {
                 bottomBarState.value = true
             }
-            AddPostScreen()
+            AddPostScreen(navController)
         }
         composable(BottomNavItem.Notification.screen_route) {
             LaunchedEffect(Unit) {

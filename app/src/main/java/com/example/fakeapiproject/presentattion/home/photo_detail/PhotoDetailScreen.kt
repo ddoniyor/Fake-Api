@@ -1,4 +1,4 @@
-package com.example.fakeapiproject.presentattion.photo_detail
+package com.example.fakeapiproject.presentattion.home.photo_detail
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn

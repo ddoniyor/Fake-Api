@@ -1,4 +1,4 @@
-package com.example.fakeapiproject.presentattion.photo_list
+package com.example.fakeapiproject.presentattion.home.photo_list
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.fakeapiproject.presentattion.Destinations
-import com.example.fakeapiproject.presentattion.photo_list.components.PhotoListItem
+import com.example.fakeapiproject.presentattion.home.photo_list.components.PhotoListItem
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 

@@ -1,4 +1,4 @@
-package com.example.fakeapiproject.presentattion.photo_list
+package com.example.fakeapiproject.presentattion.home.photo_list
 
 import com.example.fakeapiproject.domain.model.Photo
 

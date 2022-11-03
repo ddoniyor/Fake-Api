@@ -1,4 +1,4 @@
-package com.example.fakeapiproject.presentattion.photo_list
+package com.example.fakeapiproject.presentattion.home.photo_list
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -7,8 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.fakeapiproject.common.Resource
 import com.example.fakeapiproject.domain.use_case.get_photos.GetPhotosUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
