@@ -21,8 +21,8 @@ class GetPostsAndPhotosUseCase @Inject constructor(
     operator fun invoke() : Flow<Resource<PostsAndPhotos>> = flow{
         try {
             emit(Resource.Loading<PostsAndPhotos>())
-            val posts = repository.getPosts().map {it.toPost()}
-            val photos = repository.getPhotos().map { it.toPhoto() }
+            val posts = repository.getPostsApi().map {it.toPost()}
+            val photos = repository.getPhotosApi().map { it.toPhoto() }
             emit(Resource.Success<PostsAndPhotos>(PostsAndPhotos(posts = posts,photos =photos)))
             ApiLogger.isSuccess(TAG,"${posts[0]} ${photos[0]}")
         }catch (e: HttpException){

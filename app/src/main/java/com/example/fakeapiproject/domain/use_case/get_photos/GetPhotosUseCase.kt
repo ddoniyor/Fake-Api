@@ -20,7 +20,7 @@ class GetPhotosUseCase @Inject constructor(
     operator fun invoke() : Flow<Resource<List<Photo>>> = flow{
         try {
             emit(Resource.Loading<List<Photo>>())
-            val photos = repository.getPhotos().map {it.toPhoto()}
+            val photos = repository.getPhotosApi().map {it.toPhoto()}
             emit(Resource.Success<List<Photo>>(photos))
             ApiLogger.isSuccess(TAG,"${photos[0]}")
         }catch (e: HttpException){

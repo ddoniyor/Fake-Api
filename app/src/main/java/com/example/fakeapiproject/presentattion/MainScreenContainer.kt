@@ -3,11 +3,14 @@ package com.example.fakeapiproject.presentattion
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -22,7 +25,7 @@ import com.example.fakeapiproject.presentattion.splash_screen.SplashScreen
 import com.example.fakeapiproject.presentattion.splash_screen.SplashViewModel
 
 @Composable
-fun MainScreenView(viewModel: SplashViewModel = hiltViewModel()){
+fun MainScreenView(viewModel: SplashViewModel = hiltViewModel()) {
     val navController = rememberNavController()
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -33,14 +36,17 @@ fun MainScreenView(viewModel: SplashViewModel = hiltViewModel()){
         }
     }
 
-    if(viewModel.state.value.isLoading){
+    if (viewModel.state.value.isLoading) {
         SplashScreen()
-    }else{
+    } else {
         Scaffold(
-            topBar = { TopAppBar(navController = navController)},
-            bottomBar = {CustomBottomNavigation(navController = navController,bottomBarState) }
-        ) {
-            NavigationGraph(navController = navController,bottomBarState=bottomBarState)
+            topBar = { TopAppBar(navController = navController) },
+            bottomBar = { CustomBottomNavigation(navController = navController, bottomBarState) }
+        ) { innerPadding ->
+            Box(modifier = Modifier.padding(innerPadding)) {
+                NavigationGraph(navController = navController, bottomBarState = bottomBarState)
+            }
+
         }
     }
 
@@ -54,7 +60,7 @@ fun TopAppBar(navController: NavController) {
         },
         navigationIcon = if (navController.previousBackStackEntry != null) {
             {
-                IconButton(onClick = {navController.navigateUp()}) {
+                IconButton(onClick = { navController.navigateUp() }) {
                     Icon(Icons.Filled.ArrowBack, "backIcon")
                 }
             }
@@ -69,12 +75,12 @@ fun TopAppBar(navController: NavController) {
 
 
 @Composable
-fun CustomBottomNavigation(navController: NavController,bottomBarState: MutableState<Boolean>) {
+fun CustomBottomNavigation(navController: NavController, bottomBarState: MutableState<Boolean>) {
     val items = listOf(
-        BottomNavItem.Home,
-        BottomNavItem.MyNetwork,
-        BottomNavItem.AddPost,
-        BottomNavItem.Notification,
+        BottomNavItem.CommonList,
+        BottomNavItem.NestedList,
+        BottomNavItem.Grid,
+        BottomNavItem.ListDb,
         BottomNavItem.Jobs
     )
     AnimatedVisibility(
@@ -90,9 +96,18 @@ fun CustomBottomNavigation(navController: NavController,bottomBarState: MutableS
                 val currentRoute = navBackStackEntry?.destination?.route
                 items.forEach { item ->
                     BottomNavigationItem(
-                        icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
-                        label = { Text(text = item.title,
-                            fontSize = 9.sp) },
+                        icon = {
+                            Icon(
+                                painterResource(id = item.icon),
+                                contentDescription = item.title
+                            )
+                        },
+                        label = {
+                            Text(
+                                text = item.title,
+                                fontSize = 9.sp
+                            )
+                        },
                         selectedContentColor = Color.Black,
                         unselectedContentColor = Color.Black.copy(0.4f),
                         alwaysShowLabel = true,

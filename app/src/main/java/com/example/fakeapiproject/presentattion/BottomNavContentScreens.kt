@@ -1,6 +1,5 @@
 package com.example.fakeapiproject.presentattion
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -14,9 +13,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.fakeapiproject.R
-import com.example.fakeapiproject.presentattion.home.photo_list.PhotoListScreen
-import com.example.fakeapiproject.presentattion.network.nested_list.NestedList
-import com.example.fakeapiproject.presentattion.post.posts_grid_list.GridList
+import com.example.fakeapiproject.presentattion.list.photo_list.PhotoListScreen
+import com.example.fakeapiproject.presentattion.nested_list.nested_list.NestedList
+import com.example.fakeapiproject.presentattion.grid.posts_grid_list.GridList
+import com.example.fakeapiproject.presentattion.list_db.photo_list_db.PhotoListScreenDb
 
 @Composable
 fun HomeScreen(
@@ -57,21 +57,11 @@ fun AddPostScreen(
 
 
 @Composable
-fun NotificationScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(colorResource(id = R.color.teal_700))
-            .wrapContentSize(Alignment.Center)
+fun NotificationScreen(navController: NavController) {
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Text(
-            text = "Notification Screen",
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 20.sp
-        )
+        PhotoListScreenDb(navController)
     }
 }
 

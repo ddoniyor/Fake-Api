@@ -7,34 +7,34 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.fakeapiproject.common.Constants
-import com.example.fakeapiproject.presentattion.home.photo_detail.PhotoDetailScreen
+import com.example.fakeapiproject.presentattion.list.photo_detail.PhotoDetailScreen
 
 @Composable
 fun NavigationGraph(navController: NavHostController,bottomBarState:MutableState<Boolean>) {
-    NavHost(navController, startDestination = BottomNavItem.Home.screen_route) {
-        composable(BottomNavItem.Home.screen_route) {
+    NavHost(navController, startDestination = BottomNavItem.CommonList.screen_route) {
+        composable(BottomNavItem.CommonList.screen_route) {
             LaunchedEffect(Unit) {
                 bottomBarState.value = true
             }
             HomeScreen(navController)
         }
-        composable(BottomNavItem.MyNetwork.screen_route) {
+        composable(BottomNavItem.NestedList.screen_route) {
             LaunchedEffect(Unit) {
                 bottomBarState.value = true
             }
             NetworkScreen(navController)
         }
-        composable(BottomNavItem.AddPost.screen_route) {
+        composable(BottomNavItem.Grid.screen_route) {
             LaunchedEffect(Unit) {
                 bottomBarState.value = true
             }
             AddPostScreen(navController)
         }
-        composable(BottomNavItem.Notification.screen_route) {
+        composable(BottomNavItem.ListDb.screen_route) {
             LaunchedEffect(Unit) {
                 bottomBarState.value = true
             }
-            NotificationScreen()
+            NotificationScreen(navController)
         }
         composable(BottomNavItem.Jobs.screen_route) {
             LaunchedEffect(Unit) {
