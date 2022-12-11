@@ -3,6 +3,9 @@ package com.example.fakeapiproject.presentattion.grid.posts_grid_list
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -13,8 +16,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.fakeapiproject.presentattion.Destinations
 import com.example.fakeapiproject.presentattion.grid.posts_grid_list.components.GridListItem
+import com.example.photo_presentation.Destinations
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
@@ -43,7 +46,7 @@ fun SwipeRefreshComposeNested(
         onRefresh = {gridListViewModel.getPosts(isRefreshing = true)}) {
 
         Box(modifier = Modifier.fillMaxSize()) {
-            LazyVerticalGrid(modifier = Modifier.fillMaxSize(), cells =  GridCells.Fixed(2)) {
+            LazyVerticalGrid(modifier = Modifier.fillMaxSize(), columns = GridCells.Fixed(2)) {
 
                 items(state.posts) { post ->
                     GridListItem(

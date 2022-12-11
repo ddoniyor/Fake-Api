@@ -14,3 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FakeApiProject"
 include ':app'
+include ':photo'
+include ':photo:photo_data'
+include ':photo:photo_domain'
+include ':photo:photo_presentation'
+include ':core'

@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.example.fakeapiproject.domain.model.Photo
+import com.example.photo_domain.Photo
 import com.skydoves.landscapist.glide.GlideImage
 
 

@@ -11,6 +11,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/photo" />
+            <option value="$PROJECT_DIR$/photo/photo_data" />
+            <option value="$PROJECT_DIR$/photo/photo_domain" />
+            <option value="$PROJECT_DIR$/photo/photo_presentation" />
           </set>
         </option>
       </GradleProjectSettings>

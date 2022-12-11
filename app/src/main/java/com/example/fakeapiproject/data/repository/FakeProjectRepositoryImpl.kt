@@ -3,7 +3,6 @@ package com.example.fakeapiproject.data.repository
 import com.example.fakeapiproject.data.local.db.AppDatabase
 import com.example.fakeapiproject.data.local.model.PhotoEntity
 import com.example.fakeapiproject.data.remote.api.FakeProjectApi
-import com.example.fakeapiproject.data.remote.dto.PhotoDto
 import com.example.fakeapiproject.data.remote.dto.PostDto
 import com.example.fakeapiproject.domain.repository.FakeProjectRepository
 import kotlinx.coroutines.flow.Flow
@@ -13,13 +12,7 @@ class FakeProjectRepositoryImpl @Inject constructor(
     private val api: FakeProjectApi,
     private val db: AppDatabase
 ) :FakeProjectRepository {
-    override suspend fun getPhotosApi(): List<PhotoDto> {
-        return api.getPhotos()
-    }
 
-    override suspend fun getPhotoByIdApi(photoId: Int): PhotoDto {
-        return api.getPhotoById(photoId)
-    }
 
     override suspend fun getPostsApi(): List<PostDto> {
         return api.getPosts()

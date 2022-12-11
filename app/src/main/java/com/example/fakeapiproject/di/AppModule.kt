@@ -7,6 +7,7 @@ import com.example.fakeapiproject.data.local.db.AppDatabase
 import com.example.fakeapiproject.data.remote.api.FakeProjectApi
 import com.example.fakeapiproject.data.repository.FakeProjectRepositoryImpl
 import com.example.fakeapiproject.domain.repository.FakeProjectRepository
+import com.example.photo_data.PhotosApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,12 +35,23 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFakeProjectApi(): FakeProjectApi {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(FakeProjectApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFakeProjectApi(retrofit: Retrofit):FakeProjectApi{
+        return retrofit.create(FakeProjectApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providePhotoModuleApi(retrofit: Retrofit):PhotosApi{
+        return retrofit.create(PhotosApi::class.java)
     }
 
     @Provides

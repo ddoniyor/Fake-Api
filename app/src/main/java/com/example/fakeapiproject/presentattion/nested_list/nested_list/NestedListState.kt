@@ -1,6 +1,6 @@
 package com.example.fakeapiproject.presentattion.nested_list.nested_list
 
-import com.example.fakeapiproject.domain.model.Photo
+import com.example.photo_domain.Photo
 import com.example.fakeapiproject.domain.model.Post
 
 data class NestedListState(

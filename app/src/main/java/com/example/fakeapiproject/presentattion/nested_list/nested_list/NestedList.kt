@@ -14,21 +14,24 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.fakeapiproject.presentattion.Destinations
 import com.example.fakeapiproject.presentattion.nested_list.nested_list.components.HorizontalItem
 import com.example.fakeapiproject.presentattion.nested_list.nested_list.components.VerticalItem
+import com.example.photo_presentation.Destinations
+import com.example.photo_presentation.PhotoNavigationGraph
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 
 @Composable
 fun NestedList(
+    photoNavController:NavController,
     navController: NavController,
     nestedViewModel: NestedListViewModel = hiltViewModel()
 ) {
     SwipeRefreshComposeNested(
         nestedViewModel = nestedViewModel,
-        navController = navController
+        navController = navController,
+        photoNavController = photoNavController
     )
 }
 
@@ -36,6 +39,7 @@ fun NestedList(
 fun SwipeRefreshComposeNested(
     modifier: Modifier = Modifier,
     navController: NavController,
+    photoNavController:NavController,
     nestedViewModel: NestedListViewModel
 ) {
     val state = nestedViewModel.state.value
@@ -50,7 +54,7 @@ fun SwipeRefreshComposeNested(
                     LazyRow(content = {
                         items(state.posts) { post ->
                             HorizontalItem(post = post) {
-                                navController.navigate(Destinations.PhotoDetailScreen.screen_route + "/${it.id}")
+                                photoNavController.navigate(Destinations.PhotoDetailScreen.screen_route + "/${it.id}")
                             }
                         }
                     })
@@ -59,7 +63,7 @@ fun SwipeRefreshComposeNested(
                     VerticalItem(
                         photo = photo,
                         onItemClick = {
-                            navController.navigate(Destinations.PhotoDetailScreen.screen_route + "/${it.id}")
+                            photoNavController.navigate(Destinations.PhotoDetailScreen.screen_route + "/${it.id}")
                         }
                     )
 

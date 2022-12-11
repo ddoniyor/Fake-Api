@@ -13,32 +13,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.fakeapiproject.R
-import com.example.fakeapiproject.presentattion.list.photo_list.PhotoListScreen
 import com.example.fakeapiproject.presentattion.nested_list.nested_list.NestedList
 import com.example.fakeapiproject.presentattion.grid.posts_grid_list.GridList
 import com.example.fakeapiproject.presentattion.list_db.photo_list_db.PhotoListScreenDb
+import com.example.photo_presentation.PhotoNavigationGraph
 
-@Composable
-fun HomeScreen(
-    navController: NavController
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        PhotoListScreen(navController)
-    }
-}
 
 @Composable
 fun NetworkScreen(
-    navController: NavController
+    navController: NavController,
+    photoNavController:NavController
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        NestedList(navController)
+        NestedList(navController,photoNavController)
     }
 }
 

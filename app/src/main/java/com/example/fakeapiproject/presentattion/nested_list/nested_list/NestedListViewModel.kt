@@ -1,5 +1,6 @@
 package com.example.fakeapiproject.presentattion.nested_list.nested_list
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -32,6 +33,7 @@ class NestedListViewModel@Inject constructor(
                         posts = result.data?.posts ?: emptyList(),
                         photos = result.data?.photos ?: emptyList()
                     )
+                    Log.d("NestedViewModel","${result.data?.photos} -- ${result.data?.photos}")
                 }
                 is Resource.Error -> {
                     _state.value =

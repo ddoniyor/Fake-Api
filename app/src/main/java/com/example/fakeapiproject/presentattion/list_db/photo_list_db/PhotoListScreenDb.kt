@@ -19,12 +19,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.fakeapiproject.data.local.model.PhotoEntity
-import com.example.fakeapiproject.presentattion.Destinations
-import com.example.fakeapiproject.presentattion.list.photo_list.components.PhotoListItem
 import com.example.fakeapiproject.presentattion.list_db.photo_list_db.components.PhotoListItemDb
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+
 
 @Composable
 fun PhotoListScreenDb(

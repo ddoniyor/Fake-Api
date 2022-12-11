@@ -23,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.fakeapiproject.R
 import com.example.fakeapiproject.presentattion.splash_screen.SplashScreen
 import com.example.fakeapiproject.presentattion.splash_screen.SplashViewModel
+import com.example.photo_presentation.Destinations
 
 @Composable
 fun MainScreenView(viewModel: SplashViewModel = hiltViewModel()) {

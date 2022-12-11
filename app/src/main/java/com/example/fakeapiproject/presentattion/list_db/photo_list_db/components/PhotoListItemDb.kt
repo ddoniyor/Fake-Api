@@ -1,6 +1,5 @@
 package com.example.fakeapiproject.presentattion.list_db.photo_list_db.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,13 +11,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.fakeapiproject.domain.model.Photo
 import com.example.fakeapiproject.presentattion.ui.theme.FakeApiProjectTheme
 import com.skydoves.landscapist.glide.GlideImage
-import com.example.fakeapiproject.R
 import com.example.fakeapiproject.data.local.model.PhotoEntity
 
 @Composable

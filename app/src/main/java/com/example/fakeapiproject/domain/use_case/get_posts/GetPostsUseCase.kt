@@ -1,9 +1,7 @@
 package com.example.fakeapiproject.domain.use_case.get_posts
 
 import com.example.fakeapiproject.common.Resource
-import com.example.fakeapiproject.data.remote.dto.toPhoto
 import com.example.fakeapiproject.data.remote.dto.toPost
-import com.example.fakeapiproject.domain.model.Photo
 import com.example.fakeapiproject.domain.model.Post
 import com.example.fakeapiproject.domain.repository.FakeProjectRepository
 import com.example.fakeapiproject.utils.ApiLogger
