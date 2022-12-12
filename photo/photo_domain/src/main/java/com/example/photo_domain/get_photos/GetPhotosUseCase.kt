@@ -2,7 +2,8 @@ package com.example.photo_domain.get_photos
 
 import com.example.photo_domain.Photo
 import com.example.core.ApiLogger
-import com.example.photo_domain.PhotoRepository
+import com.example.photo_data.PhotoRepository
+import com.example.photo_domain.toPhoto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -18,7 +19,7 @@ class GetPhotosUseCase @Inject constructor(
     operator fun invoke() : Flow<com.example.core.PhotoResource<List<Photo>>> = flow{
         try {
             emit(com.example.core.PhotoResource.Loading<List<Photo>>())
-            val photos = repository.getPhotosApi().map {it}
+            val photos = repository.getPhotosApi().map {it.toPhoto()}
             emit(com.example.core.PhotoResource.Success<List<Photo>>(photos))
             ApiLogger.isSuccess(TAG,"${photos[0]}")
         }catch (e: HttpException){

@@ -5,7 +5,8 @@ import com.example.fakeapiproject.data.remote.dto.toPost
 import com.example.fakeapiproject.domain.model.PostsAndPhotos
 import com.example.fakeapiproject.domain.repository.FakeProjectRepository
 import com.example.fakeapiproject.utils.ApiLogger
-import com.example.photo_domain.PhotoRepository
+import com.example.photo_data.PhotoRepository
+import com.example.photo_domain.toPhoto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -22,7 +23,7 @@ class GetPostsAndPhotosUseCase @Inject constructor(
         try {
             emit(Resource.Loading<PostsAndPhotos>())
             val posts = repository.getPostsApi().map {it.toPost()}
-            val photos = photoRepository.getPhotosApi()
+            val photos = photoRepository.getPhotosApi().map{it.toPhoto()}
             emit(Resource.Success<PostsAndPhotos>(PostsAndPhotos(posts = posts,photos = photos)))
             ApiLogger.isSuccess(TAG,"${posts[0]} ${photos[0]}")
         }catch (e: HttpException){

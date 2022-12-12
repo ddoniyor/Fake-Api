@@ -1,6 +1,5 @@
 package com.example.photo_data
 
-import com.example.photo_domain.Photo
 
 data class PhotoDto(
     val albumId: Int,
@@ -12,11 +11,3 @@ data class PhotoDto(
 
 
 
-fun PhotoDto.toPhoto(): Photo {
-    return Photo(
-        id= id,
-        thumbnailUrl = thumbnailUrl,
-        title = title,
-        url = url
-    )
-}

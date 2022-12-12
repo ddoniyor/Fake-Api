@@ -1,6 +1,5 @@
 package com.example.photo_data
 
-import com.example.photo_domain.PhotoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +12,7 @@ import javax.inject.Singleton
 object PhotoApiModule {
     @Provides
     @Singleton
-    fun providePhotoRepository(api: PhotosApi):PhotoRepository{
+    fun providePhotoRepository(api: PhotosApi): PhotoRepository {
         return PhotoRepositoryImpl(api)
     }
 }

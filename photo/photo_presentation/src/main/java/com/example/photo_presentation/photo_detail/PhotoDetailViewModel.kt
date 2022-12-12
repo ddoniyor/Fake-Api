@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.PhotoConstants
+import com.example.photo_presentation.PhotoConstants
 import com.example.core.PhotoResource
 import com.example.photo_domain.get_photo.GetPhotoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

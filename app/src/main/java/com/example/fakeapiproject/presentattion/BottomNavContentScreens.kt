@@ -21,14 +21,13 @@ import com.example.photo_presentation.PhotoNavigationGraph
 
 @Composable
 fun NetworkScreen(
-    navController: NavController,
-    photoNavController:NavController
+    navController: NavController
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        NestedList(navController,photoNavController)
+        NestedList(navController)
     }
 }
 

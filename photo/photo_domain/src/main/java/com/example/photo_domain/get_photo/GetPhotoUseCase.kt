@@ -5,7 +5,8 @@ import com.example.photo_domain.Photo
 import com.example.core.PhotoResource
 
 import com.example.core.ApiLogger
-import com.example.photo_domain.PhotoRepository
+import com.example.photo_data.PhotoRepository
+import com.example.photo_domain.toPhoto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -22,7 +23,7 @@ class GetPhotoUseCase @Inject constructor(
         try {
             emit(PhotoResource.Loading<Photo>())
             val photo = repository.getPhotoByIdApi(photoId)
-            emit(PhotoResource.Success<Photo>(photo))
+            emit(PhotoResource.Success<Photo>(photo.toPhoto()))
             ApiLogger.isSuccess(TAG,photo)
         }catch (e: HttpException){
             emit(PhotoResource.Error<Photo>(e.localizedMessage?:"An unexpected error occurred."))

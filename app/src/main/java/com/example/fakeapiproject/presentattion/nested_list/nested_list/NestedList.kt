@@ -24,14 +24,12 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
 fun NestedList(
-    photoNavController:NavController,
     navController: NavController,
     nestedViewModel: NestedListViewModel = hiltViewModel()
 ) {
     SwipeRefreshComposeNested(
         nestedViewModel = nestedViewModel,
-        navController = navController,
-        photoNavController = photoNavController
+        navController = navController
     )
 }
 
@@ -39,7 +37,6 @@ fun NestedList(
 fun SwipeRefreshComposeNested(
     modifier: Modifier = Modifier,
     navController: NavController,
-    photoNavController:NavController,
     nestedViewModel: NestedListViewModel
 ) {
     val state = nestedViewModel.state.value
@@ -54,7 +51,7 @@ fun SwipeRefreshComposeNested(
                     LazyRow(content = {
                         items(state.posts) { post ->
                             HorizontalItem(post = post) {
-                                photoNavController.navigate(Destinations.PhotoDetailScreen.screen_route + "/${it.id}")
+                                navController.navigate(Destinations.PhotoDetailScreen.screen_route + "/${it.id}")
                             }
                         }
                     })
@@ -63,7 +60,7 @@ fun SwipeRefreshComposeNested(
                     VerticalItem(
                         photo = photo,
                         onItemClick = {
-                            photoNavController.navigate(Destinations.PhotoDetailScreen.screen_route + "/${it.id}")
+                            navController.navigate(Destinations.PhotoDetailScreen.screen_route + "/${it.id}")
                         }
                     )
 
